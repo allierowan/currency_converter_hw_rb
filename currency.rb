@@ -6,6 +6,16 @@ class Currency
     @currency_code = currency_code
   end
 
+  # method to access the amount of a currency
+  def amount
+    @amount
+  end
+
+  # method to access the code of a currency
+  def currency_code
+    @currency_code
+  end
+  
   # two currency objects should equal each other if and only if both the amount and the currency code are the same
   def ==(other_currency)
 
