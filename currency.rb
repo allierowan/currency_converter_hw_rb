@@ -1,11 +1,19 @@
 require_relative "./different_currency_code_error"
-
+require_relative "./unknown_currency_code_error"
 class Currency
-
+  CURRENCY_SYMBOLS = {"$" => "USD", "€" => "Euro"}
   # initialize currency object with an amount and a currency code
-  def initialize(amount, code)
-    @amount = amount
-    @code = code
+  def initialize(amount, code = nil)
+    raise ArgumentError if !( amount && code ) && !amount.is_a?(String)
+
+    if amount.is_a? String
+      raise UnknownCurrencyCodeError unless CURRENCY_SYMBOLS[amount[0]]
+      @code = CURRENCY_SYMBOLS[amount[0]]
+      @amount = amount[1, amount.length - 1]
+    else
+      @amount = amount
+      @code = code
+    end
   end
 
   # method to access the amount of a currency
