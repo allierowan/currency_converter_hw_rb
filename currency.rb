@@ -24,15 +24,17 @@ class Currency
   # a currency object should be able to be added to another one with the same code
   # should raise a DifferentCurrencyCodeError when code is different
   def +(other)
-    raise DifferentCurrencyCodeError, "currency codes must be the same" if self.code != other.code
+    raise DifferentCurrencyCodeError if self.code != other.code
     new_amount = self.amount + other.amount
     Currency.new(new_amount, self.code)
   end
 
   # a currency object should be able to be subtracted from another one with the same code
   # should raise a DifferentCurrencyCodeError when code is different
-  def -(other_currency)
-
+  def -(other)
+    raise DifferentCurrencyCodeError if self.code != other.code
+    new_amount = self.amount - other.amount
+    Currency.new(new_amount, self.code)
   end
 
   # when multiplied by a fixnum or a float, should return a currency object

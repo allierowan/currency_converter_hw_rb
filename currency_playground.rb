@@ -1,15 +1,17 @@
-require_relative "./currency"  # => true
-require_relative "./different_currency_code_error"
+require_relative "./currency"                       # => true
+require_relative "./different_currency_code_error"  # => true
 
-ten_dollars = Currency.new(10, "USD")  # => #<Currency:0x007fe86c141868 @amount=10, @code="USD">
-dix_dollars = Currency.new(20, "EUR")  # => #<Currency:0x007fe86c143de8 @amount=20, @code="EUR">
+ten_dollars = Currency.new(10, "USD")     # => #<Currency:0x007fe13789ab28 @amount=10, @code="USD">
+thirty_dollars = Currency.new(30, "USD")  # => #<Currency:0x007fe13789a588 @amount=30, @code="EUR">
 
-ten_dollars == dix_dollars  # => false
+thirty_dollars == ten_dollars  # => false
 
-twenty_dollars = ten_dollars + dix_dollars  # ~> NameError: uninitialized constant Currency::DifferentCurrencyCodeError
+forty_dollars = ten_dollars + thirty_dollars  # ~> DifferentCurrencyCodeError: currency codes are different
 
-# ~> NameError
-# ~> uninitialized constant Currency::DifferentCurrencyCodeError
+twenty_dollars = thirty_dollars - ten_dollars  # ~> DifferentCurrencyCodeError: currency codes are different
+
+# ~> DifferentCurrencyCodeError
+# ~> currency codes are different
 # ~>
-# ~> /Users/aileenrowan/code/currency_converter_hw_rb/currency.rb:27:in `+'
-# ~> /Users/aileenrowan/code/currency_converter_hw_rb/currency_playground.rb:8:in `<main>'
+# ~> /Users/aileenrowan/code/currency_converter_hw_rb/currency.rb:35:in `-'
+# ~> /Users/aileenrowan/code/currency_converter_hw_rb/currency_playground.rb:11:in `<main>'
