@@ -39,7 +39,8 @@ class Currency
 
   # when multiplied by a fixnum or a float, should return a currency object
   def *(number)
-
+    new_amount = self.amount*number
+    Currency.new(new_amount, self.code)
   end
 
 end
