@@ -15,10 +15,10 @@ class Currency
   def currency_code
     @currency_code
   end
-  
+
   # two currency objects should equal each other if and only if both the amount and the currency code are the same
   def ==(other_currency)
-
+    self.amount == other_currency.amount && self.currency_code == other_currency.currency_code
   end
 
   # a currency object should be able to be added to another one with the same code
