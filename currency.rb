@@ -1,3 +1,5 @@
+require_relative "./different_currency_code_error"
+
 class Currency
 
   # initialize currency object with an amount and a currency code

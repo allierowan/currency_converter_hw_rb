@@ -1,4 +1,5 @@
 require_relative "./currency"
+require_relative "./unknown_currency_code_error"
 
 class CurrencyConverter
 
@@ -15,6 +16,7 @@ class CurrencyConverter
 
   # given a currency object, should be able to return a new currency object in the requested currency code
   def convert(currency, code)
+    raise UnknownCurrencyCodeError unless rates_lookup[code]
     currency * (rates_lookup[code] / rates_lookup[currency.code])
   end
 end
