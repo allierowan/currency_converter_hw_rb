@@ -1,9 +1,9 @@
 class Currency
 
   # initialize currency object with an amount and a currency code
-  def initialize(amount, currency_code)
+  def initialize(amount, code)
     @amount = amount
-    @currency_code = currency_code
+    @code = code
   end
 
   # method to access the amount of a currency
@@ -12,19 +12,21 @@ class Currency
   end
 
   # method to access the code of a currency
-  def currency_code
-    @currency_code
+  def code
+    @code
   end
 
   # two currency objects should equal each other if and only if both the amount and the currency code are the same
-  def ==(other_currency)
-    self.amount == other_currency.amount && self.currency_code == other_currency.currency_code
+  def ==(other)
+    self.amount == other.amount && self.code == other.code
   end
 
   # a currency object should be able to be added to another one with the same code
   # should raise a DifferentCurrencyCodeError when code is different
-  def +(other_currency)
-
+  def +(other)
+    raise DifferentCurrencyCodeError, "currency codes must be the same" if self.code != other.code
+    new_amount = self.amount + other.amount
+    Currency.new(new_amount, self.code)
   end
 
   # a currency object should be able to be subtracted from another one with the same code
