@@ -38,12 +38,12 @@ class CurrencyTrader
   # this method should tell you which currency (or currencies) you would get the best returns on given two converter inputs
   def best_bet_currency
     start_value = Currency.new(1, self.start_currency)
-    possible_currencies = self.converter1.rates_lookup.keys - [self.start_currency]
+    possible_currencies = self.converter1.rates_lookup.keys
     result_amounts = {}
-    possible_currencies.each do |code|
-      converted_amount = converter1.convert(start_value, code)
+    possible_currencies.each do |curr_code|
+      converted_amount = converter1.convert(start_value, curr_code)
       converted_back_amount = converter2.convert(converted_amount, start_value.code)
-      result_amounts[code] = converted_back_amount.amount
+      result_amounts[curr_code] = converted_back_amount.amount
     end
     best_bet = max_value_keys(result_amounts)
     return best_bet
