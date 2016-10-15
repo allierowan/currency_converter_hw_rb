@@ -17,6 +17,7 @@ class CurrencyConverter
   # given a currency object, should be able to return a new currency object in the requested currency code
   def convert(currency, code)
     raise UnknownCurrencyCodeError unless rates_lookup[code]
-    currency * (rates_lookup[code] / rates_lookup[currency.code])
+    new_amount = currency.amount * rates_lookup[code] / rates_lookup[currency.code]
+    Currency.new(new_amount, code)
   end
 end
