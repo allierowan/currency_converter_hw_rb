@@ -23,7 +23,7 @@ currency_converter1.convert(one_eur, "CUR")
 currency_converter1.convert(Currency.new(1, "USD"), "USD") == Currency.new(1, "USD")
 
 new_money = Currency.new("$5")
-
+new_money + ten_dollars
 start_value = Currency.new(1, "EUR")
 converted_value = currency_converter1.convert(start_value, "EUR")
 currency_converter2.convert(converted_value, "EUR")

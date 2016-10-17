@@ -50,7 +50,7 @@ converted_currency.code #=> EUR
 ```
 
 ## CurrencyTrader Usage
-The CurrencyTrader objects are initialized with two converters and a from-currency code. 
+The CurrencyTrader objects are initialized with two converters and a from-currency code.
 ### Create CurrencyTrader
 ```ruby
 converter1 = CurrencyConverter.new({"USD" => 1.0, "EUR" => 0.74, "JPY" => 120.0})
