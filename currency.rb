@@ -10,7 +10,7 @@ class Currency
     if amount.is_a? String
       raise UnknownCurrencyCodeError unless CURRENCY_SYMBOLS[amount[0]]
       @code = CURRENCY_SYMBOLS[amount[0]]
-      @amount = amount[1, amount.length - 1]
+      @amount = amount[1, amount.length - 1].to_f
 
     else
       @amount = amount
