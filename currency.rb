@@ -4,6 +4,8 @@ require_relative "./unknown_currency_code_error"
 class Currency
   CURRENCY_SYMBOLS = {"$" => "USD", "€" => "Euro"}
   # initialize currency object with an amount and a currency code
+  attr_accessor :amount, :code
+
   def initialize(amount, code = nil)
     raise ArgumentError if !( amount && code ) && !amount.is_a?(String)
 
@@ -17,16 +19,6 @@ class Currency
       @code = code
 
     end
-  end
-
-  # method to access the amount of a currency
-  def amount
-    @amount
-  end
-
-  # method to access the code of a currency
-  def code
-    @code
   end
 
   # two currency objects should equal each other if and only if both the amount and the currency code are the same
