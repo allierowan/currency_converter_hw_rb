@@ -3,11 +3,9 @@ require_relative "./currency_converter"
 
 # find the key(s) that have the max value(s) from a hash, returns an array of keys
 def max_value_keys(hash)
-  max_keys = []
-  hash.each do |key, value|
-    max_keys << key if value == hash.values.max
-  end
-  return max_keys
+  max_key_value = hash.max_by{ |k, v| v }
+  hash_all_maxes = hash.select{ |k, v| v == max_key_value[1] }
+  hash_all_maxes.keys
 end
 
 class CurrencyTrader
@@ -40,12 +38,15 @@ class CurrencyTrader
     start_value = Currency.new(1, self.start_currency)
     possible_currencies = self.converter1.rates_lookup.keys
     result_amounts = {}
+
     possible_currencies.each do |curr_code|
       converted_amount = converter1.convert(start_value, curr_code)
       converted_back_amount = converter2.convert(converted_amount, start_value.code)
       result_amounts[curr_code] = converted_back_amount.amount
     end
+
     best_bet = max_value_keys(result_amounts)
     return best_bet
+
   end
 end
